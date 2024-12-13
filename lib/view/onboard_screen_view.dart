@@ -1,39 +1,78 @@
+import 'package:circle_share/view/login_view.dart';
 import 'package:flutter/material.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
+  @override
+  _OnboardingScreenState createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+    int _currentPage = 0;
+  final PageController _pageController = PageController(); // Add this
+
+  final List<Map<String, String>> _onboardingData = [
+    {
+      "title": "CircleShare",
+      "subtitle": "Share More, Own Less",
+      "imagePath": "./assets/images/image_3.png",
+      "description": "Connect with Neighbors\nBuild meaningful connections while sharing resources in your community",
+    },
+    {
+      "title": "How It Works",
+      "subtitle": "Steps to Share & Borrow",
+      "imagePath": "./assets/images/image_3.png",
+      "description": "1. Find Items\nBrowse or search for nearby items\n\n2. Connect\nReach out to owners and borrow\n\n3. Share & Rate\nShare your experience and rate others",
+    },
+    {
+      "title": "Community Impact",
+      "subtitle": "Join and Contribute",
+      "imagePath": "./assets/images/image_3.png",
+      "description": "✔ 2.5K Items Shared\n✔ 150 Communities Connected\n✔ 50K Saved Together",
+    },
+    {
+      "title": "Safe Transactions",
+      "subtitle": "Trust & Security",
+      "imagePath": "./assets/images/image_3.png",
+      "description": "Secure in-app messaging and verified profiles ensure trust within the community.",
+    },
+    {
+      "title": "Start Sharing",
+      "subtitle": "Join Now",
+      "imagePath": "./assets/images/image_3.png",
+      "description": "Join a community that shares. Reduce waste, save money, and build connections.",
+    },
+  ];
+
+  @override
+  void dispose() {
+    _pageController.dispose(); // Dispose of the controller
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           Expanded(
-            child: PageView(
-              children: [
-                _buildPage(
+            child: PageView.builder(
+              controller: _pageController, // Use the controller here
+              itemCount: _onboardingData.length,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
+              itemBuilder: (context, index) {
+                final page = _onboardingData[index];
+                return _buildPage(
                   context,
-                  title: "CircleShare",
-                  subtitle: "Share More, Own Less",
-                  imagePath: "assets/images/image_3.png",
-                  description:
-                      "Connect with Neighbors\nBuild meaningful connections while sharing resources in your community",
-                ),
-                _buildPage(
-                  context,
-                  title: "How It Works",
-                  subtitle: "Steps to Share & Borrow",
-                  imagePath: "assets/images/onboarding2.jpg",
-                  description:
-                      "1. Find Items\nBrowse or search for nearby items\n\n2. Connect\nReach out to owners and borrow\n\n3. Share & Rate\nShare your experience and rate others",
-                ),
-                _buildPage(
-                  context,
-                  title: "Community Impact",
-                  subtitle: "Join and Contribute",
-                  imagePath: "assets/images/onboarding3.jpg",
-                  description:
-                      "✔ 2.5K Items Shared\n✔ 150 Communities Connected\n 50K Saved Together",
-                ),
-              ],
+                  title: page["title"]!,
+                  subtitle: page["subtitle"]!,
+                  imagePath: page["imagePath"]!,
+                  description: page["description"]!,
+                );
+              },
             ),
           ),
           Padding(
@@ -43,7 +82,10 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/'); // Navigate to main screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginView()),
+                    ); // Na // Navigate to main screen
                   },
                   child: Text("Skip", style: TextStyle(color: Colors.grey[700])),
                 ),
@@ -54,9 +96,19 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/'); // Navigate to next screen
+                    if (_currentPage == _onboardingData.length - 1) {
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginView()),
+                    ); // Navigate to main screen
+                    } else {
+                      _pageController.nextPage( // Use the controller to change pages
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    }
                   },
-                  child: Text("Next"),
+                  child: Text(_currentPage == _onboardingData.length - 1 ? "Finish" : "Next"),
                 ),
               ],
             ),

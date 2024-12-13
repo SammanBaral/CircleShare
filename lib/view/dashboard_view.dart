@@ -3,38 +3,59 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class DashboardView extends StatelessWidget {
 final List<String> bannerImages = [
-    './assets/images/image_2.jpg', // Replace with your image paths
-    './assets/images/image_2.jpg',
+    './assets/images/camera.jpg',
+    './assets/images/drill.jpg',
     './assets/images/image_2.jpg',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'CircleShare',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
+    appBar: AppBar(
+      automaticallyImplyLeading: false, // Removes the back arrow
+      backgroundColor: Colors.white,
+      elevation: 0,
+      title: Row(
+        children: [
+          // Left Image (Logo) aligned to the center
+          Align(
+            alignment: Alignment.center,
+            child: Image.asset(
+              'assets/images/circle_logo.png',
+              height: 100,
+              width: 100,
             ),
-            CircleAvatar(
-              backgroundImage: AssetImage('./assets/images/image_2.jpg'), // Replace with your image path
+          ),
+          
+          // Empty Spacer to push the notification icon to the right
+          Spacer(),
+
+          // Notification Icon aligned to the right
+          Align(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              icon: Icon(Icons.notifications, color: Colors.black),
+              onPressed: () {
+                // Handle notification button press here
+              },
             ),
-          ],
-        ),
+          ),
+
+          // CircleAvatar (can be placed wherever you want within the row)
+          Align(
+            alignment: Alignment.topRight,
+            child: CircleAvatar(
+              backgroundImage: AssetImage('./assets/images/image_1.png'), // Replace with your image path
+            ),
+          ),
+        ],
       ),
+    ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: [   
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
@@ -122,7 +143,7 @@ final List<String> bannerImages = [
             _buildItemCard(
               'Canon EOS 5D Mark IV',
               'Professional camera with 24-70mm lens',
-              './assets/images/image_2.jpg', // Replace with your image path
+              './assets/images/camera.jpg', // Replace with your image path
               'Richard Thompson',
               4.9,
               0.3,
@@ -130,7 +151,7 @@ final List<String> bannerImages = [
             _buildItemCard(
               'DeWalt Power Drill Set',
               'Complete set with various bits',
-              './assets/images/image_2.jpg', // Replace with your image path
+              './assets/images/drill.jpg', // Replace with your image path
               'Sarah Chen',
               4.8,
               0.5,
@@ -201,7 +222,7 @@ final List<String> bannerImages = [
               children: [
                 CircleAvatar(
                   radius: 12,
-                  backgroundImage: AssetImage('./assets/images/images/image_2.jpg'), // Replace with your image path
+                  backgroundImage: AssetImage('./assets/images/image_2.jpg'), // Replace with your image path
                 ),
                 SizedBox(width: 8),
                 Text(owner),
