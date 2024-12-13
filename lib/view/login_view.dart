@@ -1,3 +1,4 @@
+import 'package:circle_share/view/dashboard_view.dart';
 import 'package:circle_share/view/registration_view.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +71,11 @@ class LoginView extends StatelessWidget {
                         ),
                         SizedBox(height: 16),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => DashboardView()),
+                              );},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
                             shape: RoundedRectangleBorder(
@@ -106,12 +111,10 @@ class LoginView extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 OutlinedButton(
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () {Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => RegistrationView()),
-                    );
-                  },
+                    );},
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: Colors.black),
                     shape: RoundedRectangleBorder(
