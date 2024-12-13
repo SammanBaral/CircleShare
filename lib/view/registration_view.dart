@@ -145,45 +145,45 @@ class RegistrationView extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(thickness: 1),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        "Or continue with",
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(thickness: 1),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.g_translate),
-                      iconSize: 32,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.facebook),
-                      iconSize: 32,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.apple),
-                      iconSize: 32,
-                    ),
-                  ],
-                ),
+              //   SizedBox(height: 16),
+              //   Row(
+              //     children: [
+              //       Expanded(
+              //         child: Divider(thickness: 1),
+              //       ),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              //         child: Text(
+              //           "Or continue with",
+              //           style: TextStyle(color: Colors.grey[600]),
+              //         ),
+              //       ),
+              //       Expanded(
+              //         child: Divider(thickness: 1),
+              //       ),
+              //     ],
+              //   ),
+              //   SizedBox(height: 16),
+              //   Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       IconButton(
+              //         onPressed: () {},
+              //         icon: Icon(Icons.g_translate),
+              //         iconSize: 32,
+              //       ),
+              //       IconButton(
+              //         onPressed: () {},
+              //         icon: Icon(Icons.facebook),
+              //         iconSize: 32,
+              //       ),
+              //       IconButton(
+              //         onPressed: () {},
+              //         icon: Icon(Icons.apple),
+              //         iconSize: 32,
+              //       ),
+              //     ],
+              //   ),
               ],
             ),
           ),
