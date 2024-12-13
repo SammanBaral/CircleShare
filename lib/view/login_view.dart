@@ -1,3 +1,4 @@
+import 'package:circle_share/view/product_detail_view.dart';
 import 'package:circle_share/view/registration_view.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +88,12 @@ class LoginView extends StatelessWidget {
                         ),
                         SizedBox(height: 8),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: ()  {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ProductDetailView()),
+                              );
+                            },
                           child: Text(
                             "Forgot password?",
                             style: TextStyle(
