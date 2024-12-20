@@ -100,14 +100,12 @@ class LoginView extends StatelessWidget {
                           ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                // Navigate to the dashboard if form is valid
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => DashboardView()),
                                 );
                               } else {
-                                // Show a SnackBar for invalid form
                                 showSnackBar(context,
                                     "Please correct the errors in the form",
                                     color: Colors.red);
