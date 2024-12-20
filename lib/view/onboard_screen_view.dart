@@ -85,7 +85,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginView()),
-                    ); // Na // Navigate to main screen
+                    ); 
                   },
                   child: Text("Skip", style: TextStyle(color: Colors.grey[700])),
                 ),
@@ -100,9 +100,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                      Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginView()),
-                    ); // Navigate to main screen
+                    ); 
                     } else {
-                      _pageController.nextPage( // Use the controller to change pages
+                      _pageController.nextPage( 
                         duration: Duration(milliseconds: 300),
                         curve: Curves.easeInOut,
                       );
