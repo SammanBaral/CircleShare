@@ -1,4 +1,4 @@
-import 'package:circle_share/common/snackbar/my_snackbar.dart';
+import 'package:circle_share/core/common/snackbar/my_snackbar.dart';
 import 'package:circle_share/view/dashboard_view.dart';
 import 'package:circle_share/view/registration_view.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,8 @@ class LoginView extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,11 @@ class LoginView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/circle_logo.png',
-                height: 150,
-                width: 150,),
+                Image.asset(
+                  'assets/images/circle_logo.png',
+                  height: 150,
+                  width: 150,
+                ),
                 Text(
                   "Share and borrow items in your community",
                   style: TextStyle(
@@ -46,6 +50,7 @@ class LoginView extends StatelessWidget {
                           Text(
                             "Login",
                             style: TextStyle(
+                              fontFamily: 'Montserrat Bold',
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
@@ -98,28 +103,31 @@ class LoginView extends StatelessWidget {
                                 // Navigate to the dashboard if form is valid
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => DashboardView()),
+                                  MaterialPageRoute(
+                                      builder: (context) => DashboardView()),
                                 );
                               } else {
                                 // Show a SnackBar for invalid form
-                                showSnackBar(context, "Please correct the errors in the form", color: Colors.red);
+                                showSnackBar(context,
+                                    "Please correct the errors in the form",
+                                    color: Colors.red);
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
+                                // backgroundColor: Colors.black,
+                                // shape: RoundedRectangleBorder(
+                                //   borderRadius: BorderRadius.circular(8),
+                                // ),
+                                ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
                               child: Text(
                                 "Login",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
-
                           SizedBox(height: 8),
                           TextButton(
                             onPressed: () {

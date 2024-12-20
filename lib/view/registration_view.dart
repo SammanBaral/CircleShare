@@ -2,6 +2,8 @@ import 'package:circle_share/view/login_view.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationView extends StatefulWidget {
+  const RegistrationView({super.key});
+
   @override
   _RegistrationViewState createState() => _RegistrationViewState();
 }
@@ -9,9 +11,9 @@ class RegistrationView extends StatefulWidget {
 class _RegistrationViewState extends State<RegistrationView> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
-  // SnackBar function
   void showSnackBar(BuildContext context, String message, {Color? color}) {
     final snackBar = SnackBar(
       content: Text(
@@ -42,9 +44,11 @@ class _RegistrationViewState extends State<RegistrationView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/circle_logo.png',
-                height: 150,
-                width: 150,),
+                  Image.asset(
+                    'assets/images/circle_logo.png',
+                    height: 150,
+                    width: 150,
+                  ),
                   Text(
                     "Share and borrow items in your community",
                     style: TextStyle(
@@ -100,7 +104,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                               if (value == null || value.isEmpty) {
                                 return "Email is required";
                               }
-                              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                  .hasMatch(value)) {
                                 return "Enter a valid email address";
                               }
                               return null;
@@ -152,13 +157,18 @@ class _RegistrationViewState extends State<RegistrationView> {
                           ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                showSnackBar(context, "Account created successfully!", color: Colors.green);
+                                showSnackBar(
+                                    context, "Account created successfully!",
+                                    color: Colors.green);
                                 Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => LoginView()),
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginView()),
                                 );
                               } else {
-                                showSnackBar(context, "Please fix the errors above", color: Colors.red);
+                                showSnackBar(
+                                    context, "Please fix the errors above",
+                                    color: Colors.red);
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -168,7 +178,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
                               child: Text(
                                 "Create Account",
                                 style: TextStyle(color: Colors.white),
