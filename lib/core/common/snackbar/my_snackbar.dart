@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-void showSnackBar(BuildContext context, String message, {Color? color}) {
-  final snackBar = SnackBar(
-    content: Text(
-      message,
-      style: TextStyle(color: Colors.white),
+showMySnackBar({
+  required BuildContext context,
+  required String message,
+  Color? color,
+}) {
+  ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: color ?? Colors.green,
+      duration: const Duration(seconds: 1),
+      behavior: SnackBarBehavior.floating,
     ),
-    backgroundColor: color ?? Colors.black,
-    behavior: SnackBarBehavior.floating,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
-    margin: EdgeInsets.all(16),
-    duration: Duration(seconds: 3),
   );
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
