@@ -5,7 +5,6 @@ import 'package:circle_share/features/auth/data/data_source/auth_data_source.dar
 import 'package:circle_share/features/auth/data/model/auth_hive_model.dart';
 import 'package:circle_share/features/auth/domain/entity/auth_entity.dart';
 
-
 class AuthLocalDataSource implements IAuthDataSource {
   final HiveService _hiveService;
 
@@ -18,6 +17,7 @@ class AuthLocalDataSource implements IAuthDataSource {
       userId: "1",
       fName: "",
       lName: "",
+      image: "",
       phone: "",
       username: "",
       password: "",

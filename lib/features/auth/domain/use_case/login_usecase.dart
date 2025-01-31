@@ -1,3 +1,4 @@
+import 'package:circle_share/app/shared_prefs/token_shared_prefs.dart';
 import 'package:circle_share/app/usecase/usecase.dart';
 import 'package:circle_share/core/error/failure.dart';
 import 'package:circle_share/features/auth/domain/repository/auth_repository.dart';
@@ -24,12 +25,23 @@ class LoginParams extends Equatable {
 
 class LoginUseCase implements UsecaseWithParams<String, LoginParams> {
   final IAuthRepository repository;
-
-  LoginUseCase(this.repository);
+  final TokenSharedPrefs tokenSharedPrefs;
+  LoginUseCase(this.repository, this.tokenSharedPrefs);
 
   @override
   Future<Either<Failure, String>> call(LoginParams params) {
-    // IF api then store token in shared preferences
-    return repository.loginUser(params.username, params.password);
+    // Save token in Shared Preferences
+    return repository.loginUser(params.username, params.password).then((value) {
+      return value.fold(
+        (failure) => Left(failure),
+        (token) {
+          tokenSharedPrefs.saveToken(token);
+          tokenSharedPrefs.getToken().then((value) {
+            print(value);
+          });
+          return Right(token);
+        },
+      );
+    });
   }
 }
