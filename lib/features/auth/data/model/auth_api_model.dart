@@ -30,7 +30,6 @@ class AuthApiModel extends Equatable {
 
   Map<String, dynamic> toJson() => _$AuthApiModelToJson(this);
 
-  // To Entity
   AuthEntity toEntity() {
     return AuthEntity(
       userId: id,
@@ -43,9 +42,9 @@ class AuthApiModel extends Equatable {
     );
   }
 
-  // From Entity
   factory AuthApiModel.fromEntity(AuthEntity entity) {
     return AuthApiModel(
+      id: entity.userId,
       fname: entity.fName,
       lname: entity.lName,
       image: entity.image,
