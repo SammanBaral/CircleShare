@@ -17,7 +17,6 @@ void main() {
     tokenSharedPrefs = MockTokenSharedPrefs();
     usecase = LoginUseCase(repository, tokenSharedPrefs);
 
-    // Register fallback values
     registerFallbackValue(LoginParams(username: '', password: ''));
   });
 
