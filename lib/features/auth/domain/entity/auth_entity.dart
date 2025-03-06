@@ -13,7 +13,7 @@ class AuthEntity extends Equatable {
     this.userId,
     required this.fName,
     required this.lName,
-    required this.image,
+    this.image,
     required this.phone,
     required this.username,
     required this.password,

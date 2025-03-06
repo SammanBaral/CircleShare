@@ -15,23 +15,38 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen size for responsive layout
+    final Size screenSize = MediaQuery.of(context).size;
+    final bool isTablet = screenSize.width > 600;
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      body: SafeArea(
+        child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildLogoSection(),
-                const SizedBox(height: 32),
-                _buildLoginForm(context),
-                const SizedBox(height: 16),
-                _buildSignupSection(context),
-                const SizedBox(height: 16),
-                _buildSocialLoginSection(),
-              ],
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: isTablet ? 600 : screenSize.width,
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  // Smaller padding for phones, larger for tablets
+                  horizontal: isTablet ? 48.0 : 24.0,
+                  vertical: 16.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildLogoSection(isTablet),
+                    SizedBox(height: isTablet ? 48 : 32),
+                    _buildLoginForm(context, isTablet),
+                    const SizedBox(height: 16),
+                    _buildSignupSection(context, isTablet),
+                    const SizedBox(height: 16),
+                    _buildSocialLoginSection(isTablet),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
@@ -39,53 +54,56 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Widget _buildLogoSection() {
+  Widget _buildLogoSection(bool isTablet) {
     return Column(
       children: [
         Image.asset(
           'assets/images/circle_logo.png',
-          height: 150,
-          width: 150,
+          height: isTablet ? 200 : 150,
+          width: isTablet ? 200 : 150,
         ),
-        Text(
-          "Share and borrow items in your community",
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey[600],
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: isTablet ? 48.0 : 24.0),
+          child: Text(
+            "Share and borrow items in your community",
+            style: TextStyle(
+              fontSize: isTablet ? 18 : 16,
+              color: Colors.grey[600],
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
       ],
     );
   }
 
-  Widget _buildLoginForm(BuildContext context) {
+  Widget _buildLoginForm(BuildContext context, bool isTablet) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(isTablet ? 24.0 : 16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
+              Text(
                 "Login",
                 style: TextStyle(
                   fontFamily: 'Montserrat Bold',
-                  fontSize: 22,
+                  fontSize: isTablet ? 26 : 22,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: isTablet ? 24 : 16),
               _buildUsernameField(),
-              const SizedBox(height: 16),
+              SizedBox(height: isTablet ? 24 : 16),
               _buildPasswordField(),
-              const SizedBox(height: 16),
-              _buildLoginButton(context),
+              SizedBox(height: isTablet ? 24 : 16),
+              _buildLoginButton(context, isTablet),
               const SizedBox(height: 8),
               _buildForgotPasswordButton(context),
             ],
@@ -101,6 +119,10 @@ class LoginView extends StatelessWidget {
       decoration: InputDecoration(
         labelText: "Username",
         hintText: "Enter your username",
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 16.0,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -121,6 +143,10 @@ class LoginView extends StatelessWidget {
       decoration: InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 16.0,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -136,7 +162,7 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginButton(BuildContext context) {
+  Widget _buildLoginButton(BuildContext context, bool isTablet) {
     return ElevatedButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
@@ -156,43 +182,55 @@ class LoginView extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
+        padding: EdgeInsets.symmetric(
+          vertical: isTablet ? 20.0 : 16.0,
+        ),
       ),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: Text(
-          "Login",
-          style: TextStyle(color: Colors.white),
+      child: Text(
+        "Login",
+        style: TextStyle(
+          fontSize: isTablet ? 18 : 16,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
   }
 
   Widget _buildForgotPasswordButton(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => RegisterView()),
-        );
-      },
-      child: Text(
-        "Forgot password?",
-        style: TextStyle(
-          color: Colors.grey[600],
+    return Center(
+      child: TextButton(
+        onPressed: () {
+          // TODO: Implement forgot password functionality
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content:
+                  Text('Forgot password functionality not implemented yet'),
+            ),
+          );
+        },
+        child: Text(
+          "Forgot password?",
+          style: TextStyle(
+            color: Colors.grey[600],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildSignupSection(BuildContext context) {
+  Widget _buildSignupSection(BuildContext context, bool isTablet) {
     return Column(
       children: [
         Text(
           "Don't have an account?",
-          style: TextStyle(color: Colors.grey[600]),
+          style: TextStyle(
+            color: Colors.grey[600],
+            fontSize: isTablet ? 16 : 14,
+          ),
         ),
         const SizedBox(height: 8),
         OutlinedButton(
@@ -207,12 +245,16 @@ class LoginView extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
+            padding: EdgeInsets.symmetric(
+              vertical: isTablet ? 16.0 : 12.0,
+              horizontal: isTablet ? 48.0 : 24.0,
+            ),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0),
-            child: Text(
-              "Sign Up",
-              style: TextStyle(color: Colors.black),
+          child: Text(
+            "Sign Up",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: isTablet ? 18 : 16,
             ),
           ),
         ),
@@ -220,7 +262,7 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialLoginSection() {
+  Widget _buildSocialLoginSection(bool isTablet) {
     return Column(
       children: [
         Row(
@@ -230,7 +272,10 @@ class LoginView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 "Or continue with",
-                style: TextStyle(color: Colors.grey[600]),
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: isTablet ? 16 : 14,
+                ),
               ),
             ),
             const Expanded(child: Divider(thickness: 1)),
@@ -240,24 +285,30 @@ class LoginView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.g_translate),
-              iconSize: 32,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.facebook),
-              iconSize: 32,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.apple),
-              iconSize: 32,
-            ),
+            _buildSocialButton(Icons.g_translate, isTablet),
+            _buildSocialButton(Icons.facebook, isTablet),
+            _buildSocialButton(Icons.apple, isTablet),
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildSocialButton(IconData icon, bool isTablet) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(isTablet ? 16 : 12),
+      ),
+      child: IconButton(
+        onPressed: () {
+          // Social login functionality would go here
+        },
+        icon: Icon(icon),
+        iconSize: isTablet ? 40 : 32,
+        padding: EdgeInsets.all(isTablet ? 16.0 : 12.0),
+      ),
     );
   }
 }

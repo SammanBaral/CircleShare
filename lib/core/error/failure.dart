@@ -26,3 +26,19 @@ class SharedPrefsFailure extends Failure {
     required super.message,
   });
 }
+
+class AuthFailure extends Failure {
+  const AuthFailure({required super.message});
+}
+
+class UnsupportedOperationFailure extends Failure {
+  const UnsupportedOperationFailure({required super.message});
+}
+
+class NetworkFailure extends Failure {
+  const NetworkFailure({required super.message});
+}
+
+class ValidationFailure extends Failure {
+  const ValidationFailure({required super.message});
+}

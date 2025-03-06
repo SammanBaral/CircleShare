@@ -47,4 +47,22 @@ class AuthRemoteRepository implements IAuthRepository {
       return Left(ApiFailure(message: e.toString()));
     }
   }
+
+  //update user
+  @override
+  Future<Either<Failure, void>> updateUser(AuthEntity user) async {
+    try {
+      // If AuthRemoteDataSource.updateUser expects a String (likely userId)
+      // then we need to extract the userId from the AuthEntity
+      if (user.userId == null) {
+        return Left(ApiFailure(message: "User ID is required for update"));
+      }
+
+      // This assumes your datasource expects the userId and then the user data separately
+      await _authRemoteDataSource.updateUser(user.userId!, user);
+      return Right(null);
+    } catch (e) {
+      return Left(ApiFailure(message: e.toString()));
+    }
+  }
 }

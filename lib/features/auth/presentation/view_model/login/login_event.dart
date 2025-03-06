@@ -26,6 +26,18 @@ class NavigateHomeScreenEvent extends LoginEvent {
     required this.destination,
   });
 }
+// Add this event to your login_event.dart file
+
+class NavigateAdminScreenEvent extends LoginEvent {
+  final BuildContext context;
+
+  NavigateAdminScreenEvent({
+    required this.context,
+  });
+
+  @override
+  List<Object> get props => [context];
+}
 
 class LoginUserEvent extends LoginEvent {
   final BuildContext context;
@@ -37,4 +49,7 @@ class LoginUserEvent extends LoginEvent {
     required this.username,
     required this.password,
   });
+}
+class LogoutRequested extends LoginEvent {
+  const LogoutRequested();
 }
