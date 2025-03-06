@@ -7,7 +7,11 @@ LH:3
 end_of_record
 SF:lib\core\error\failure.dart
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 DA:6,4
+=======
+DA:6,7
+>>>>>>> Stashed changes
 =======
 DA:6,7
 >>>>>>> Stashed changes
@@ -17,12 +21,15 @@ DA:13,0
 DA:18,4
 DA:25,0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 LF:6
 LH:2
 end_of_record
 SF:lib\features\auth\domain\use_case\upload_image_usecase.dart
 DA:11,1
 =======
+=======
+>>>>>>> Stashed changes
 DA:31,0
 DA:35,0
 DA:39,2
@@ -148,6 +155,9 @@ LH:5
 end_of_record
 SF:lib\features\auth\domain\use_case\upload_image_usecase.dart
 DA:11,2
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 DA:20,1
 DA:22,1
@@ -156,7 +166,10 @@ LF:4
 LH:4
 end_of_record
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 SF:lib\features\items\domain\entity\item_entity.dart
 DA:18,1
 DA:34,0
@@ -365,6 +378,9 @@ DA:147,0
 LF:62
 LH:19
 end_of_record
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 SF:lib\features\auth\data\model\auth_api_model.dart
 DA:18,1
@@ -444,12 +460,15 @@ DA:21,0
 DA:22,0
 DA:24,0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 LF:9
 LH:0
 end_of_record
 SF:lib\features\auth\domain\use_case\register_usecase.dart
 DA:16,1
 =======
+=======
+>>>>>>> Stashed changes
 DA:28,0
 DA:30,0
 DA:31,0
@@ -897,6 +916,9 @@ LH:0
 end_of_record
 SF:lib\features\auth\domain\use_case\register_usecase.dart
 DA:16,2
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 DA:26,0
 DA:35,0
@@ -915,7 +937,10 @@ LF:14
 LH:11
 end_of_record
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 SF:lib\features\auth\presentation\view_model\login\login_event.dart
 DA:4,0
 DA:6,0
@@ -4827,4 +4852,7 @@ DA:59,1
 LF:23
 LH:21
 end_of_record
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
